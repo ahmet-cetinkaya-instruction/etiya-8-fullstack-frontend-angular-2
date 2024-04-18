@@ -1,44 +1,35 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
+import { ModelsApiService } from '../../services/modelsApi.service';
+import { ModelListItemDto } from '../../models/model-list-item-dto';
 
 @Component({
   selector: 'app-models-list',
   standalone: true,
-  imports: [
-    CommonModule,
-  ],
+  imports: [CommonModule],
   templateUrl: './models-list.component.html',
   styleUrl: './models-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ModelsListComponent {
-  public list = [
-    {
-      id: 1,
-      name: 'A3',
-      description: 'Model 1 Description',
-    },
-    {
-      id: 1,
-      name: 'M3',
-      description: 'Model 2 Description',
-    },
-    {
-      id: 1,
-      name: 'Model 3',
-      description: 'Model 3 Description',
-    }
-  ]
+export class ModelsListComponent implements OnInit {
+  public list!: ModelListItemDto[];
 
-  // constructor() {
-  //   let a : number = 1;
-  //   a = 2;
-  //   const b : number = 2;
-  //   // b = 3;
+  constructor(
+    private modelsApiService: ModelsApiService,
+    private change: ChangeDetectorRef
+  ) {}
 
-  //   for(let item of this.list){
-  //     console.log(item);
-  //   }
-  // }
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.modelsApiService.getList().subscribe((response) => {
+      this.list = response;
+      this.change.markForCheck(); // ChangeDetectionStrategy.OnPush // Asekronik olarak çalıştığı için bu satırı ekledik.
+    });
+  }
 }
-

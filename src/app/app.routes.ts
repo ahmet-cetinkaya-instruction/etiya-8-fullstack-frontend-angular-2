@@ -1,9 +1,10 @@
 import { Routes } from '@angular/router';
 import { HomePageComponent } from './routers/home-page/home-page.component';
+import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
 
 export const routes: Routes = [
   {
-    path: '',
+    path: '', // /
     pathMatch: 'full',
     redirectTo: 'home',
     // children: []
@@ -11,13 +12,13 @@ export const routes: Routes = [
   {
     path: 'home', // /home
     // pathMatch: 'prefix', // Default // ^(/home)
-    component: HomePageComponent,
-    // children: [
-    //   {
-    //     path: "models", // /home/models
-    //     // pathMatch: 'prefix', // ^(/home/models)
-    //     component: HomePageComponent,
-    //   }
-    // ]
+    component: MainLayoutComponent,
+    children: [
+      {
+        path: "", // /home
+        pathMatch: 'full',
+        component: HomePageComponent,
+      }
+    ]
   }
 ];

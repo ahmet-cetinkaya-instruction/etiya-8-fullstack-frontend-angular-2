@@ -1,0 +1,10 @@
+Counter: {{ counter }}
+<button (click)="sumCounter(1)">+</button>
+<button (click)="sumCounter(-1)">-</button>
+
+<p *ngIf="isCounterZero">Counter is zero</p>
+<p *ngIf="getIsCounterPositive()">Counter is positive</p>
+<!-- >= Angular 17 -->
+@if (isCounterNegative) {
+<p>Counter is negative</p>
+}

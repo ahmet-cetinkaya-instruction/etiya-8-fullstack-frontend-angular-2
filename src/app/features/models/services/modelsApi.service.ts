@@ -9,15 +9,18 @@ import { ModelListItemDto } from '../models/model-list-item-dto';
 export class ModelsApiService {
   constructor(private http: HttpClient) {}
 
-  getList(brandId: number | null = null): Observable<ModelListItemDto[]> {
-    const requestQueryParams : any = {
+  getList(
+    brandId: number | null = null,
+    searchBrandName: string | null = null
+  ): Observable<ModelListItemDto[]> {
+    const requestQueryParams: any = {
       // brandId: brandId
-    }
+    };
     if (brandId !== null) requestQueryParams.brandId = brandId;
+    if (searchBrandName) requestQueryParams.name_like = searchBrandName;
 
-    return this.http.get<ModelListItemDto[]>('http://localhost:3000/models',
-    {
-      params: requestQueryParams // ?brandId=1
+    return this.http.get<ModelListItemDto[]>('http://localhost:3000/models', {
+      params: requestQueryParams, // ?brandId=1&name_like=land
     });
     // .subscribe(
     //   (httpResponse) => {

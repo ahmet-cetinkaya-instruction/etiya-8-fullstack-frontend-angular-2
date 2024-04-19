@@ -3,5 +3,10 @@
 
 <app-brands-list (selectBrand)="onBrandSelect($event)"></app-brands-list>
 <!-- $event : event'in verdiği veriyi almamızı sağlayan özel bir keyword. -->
-<hr>
-<app-models-list [brandId]="selectedBrandId"></app-models-list>
+<hr />
+Search: <input type="text" [(ngModel)]="searchBrandName" />
+<!-- FormsModule ile gelen ngModel benim için input ile state'i birbirine iki yönlü atama olacak şekilde bağlamama yardımcı oluyor -->
+<app-models-list
+  [brandId]="selectedBrandId"
+  [searchBrandName]="searchBrandName"
+></app-models-list>

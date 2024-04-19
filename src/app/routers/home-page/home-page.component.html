@@ -1,4 +1,7 @@
 <h1>Rent A Car</h1>
 <p>Find the best car for you!</p>
 
+<app-brands-list (selectBrand)="onBrandSelect($event)"></app-brands-list>
+<!-- $event : event'in verdiği veriyi almamızı sağlayan özel bir keyword. -->
+<hr>
 <app-models-list></app-models-list>

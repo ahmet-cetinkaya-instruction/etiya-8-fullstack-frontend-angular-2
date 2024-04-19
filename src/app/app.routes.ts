@@ -3,6 +3,7 @@ import { HomePageComponent } from './routers/home-page/home-page.component';
 import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
 import { TestPageComponent } from './routers/test-page/test-page.component';
 import { NotFoundPageComponent } from './routers/not-found-page/not-found-page.component';
+import { CreateBrandPageComponent } from './routers/create-brand-page/create-brand-page.component';
 
 export const routes: Routes = [
   // Home
@@ -27,6 +28,11 @@ export const routes: Routes = [
   {
     path: 'layout-test',
     component: TestPageComponent
+  },
+  // Create Brand Page
+  {
+    path: 'brands/create',
+    component: CreateBrandPageComponent,
   },
   // 404 Not Found Page
   {

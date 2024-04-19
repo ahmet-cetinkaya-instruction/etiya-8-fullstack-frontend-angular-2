@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MainLayoutComponent } from '../../shared/layouts/main-layout/main-layout.component';
 import { ModelsListComponent } from '../../features/models/components/models-list/models-list.component';
@@ -21,9 +21,9 @@ import { BrandsListComponent } from '../../features/brands/components/brands-lis
 export class HomePageComponent {
   selectedBrandId: number | null = null;
 
-  onBrandSelect(brandId: number) {
-    console.log(brandId);
+  constructor(private change:ChangeDetectorRef) {}
 
+  onBrandSelect(brandId: number | null) {
     this.selectedBrandId = brandId;
   }
 }

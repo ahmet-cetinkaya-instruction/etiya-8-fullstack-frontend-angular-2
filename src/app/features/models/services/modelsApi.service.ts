@@ -11,10 +11,13 @@ export class ModelsApiService {
 
   getList(
     brandId: number | null = null,
-    searchBrandName: string | null = null
+    searchBrandName: string | null = null,
+    pageIndex: number = 0,
+    pageSize: number = 10
   ): Observable<ModelListItemDto[]> {
     const requestQueryParams: any = {
-      // brandId: brandId
+      _page: pageIndex + 1,
+      _limit: pageSize,
     };
     if (brandId !== null) requestQueryParams.brandId = brandId;
     if (searchBrandName) requestQueryParams.name_like = searchBrandName;

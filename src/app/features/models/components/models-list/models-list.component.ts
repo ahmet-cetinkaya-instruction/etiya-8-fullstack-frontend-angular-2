@@ -27,6 +27,9 @@ export class ModelsListComponent implements OnInit, OnChanges {
   // get filteredList(): ModelListItemDto[] {
   //   return this.list.filter((item) => item.brandId === this.brandId);
   // }
+  pageIndex: number = 0;
+  private static pageSize: number = 5;
+  hasPageNext: boolean = true;
 
   constructor(
     private modelsApiService: ModelsApiService,
@@ -40,17 +43,44 @@ export class ModelsListComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     // Her state değiştiğinde tetiklenir.
-    if (changes['brandId'] && changes['brandId'].currentValue !== changes['brandId'].previousValue)
+    if (
+      changes['brandId'] &&
+      changes['brandId'].currentValue !== changes['brandId'].previousValue
+    )
       this.getList();
-    if(changes['searchBrandName'] && changes['searchBrandName'].currentValue !== changes['searchBrandName'].previousValue)
+    if (
+      changes['searchBrandName'] &&
+      changes['searchBrandName'].currentValue !==
+        changes['searchBrandName'].previousValue
+    )
       this.getList();
   }
 
   private getList() {
-    this.modelsApiService.getList(this.brandId, this.searchBrandName)
-    .subscribe((response) => {
-      this.list = response;
-      this.change.markForCheck();
-    });
+    this.modelsApiService
+      .getList(
+        this.brandId,
+        this.searchBrandName,
+        this.pageIndex,
+        ModelsListComponent.pageSize
+      )
+      .subscribe({
+        next: (response) => {
+          if (response.length === 0) {
+            this.hasPageNext = false;
+            return;
+          }
+          if (!this.hasPageNext) this.hasPageNext = true;
+          this.list = response;
+        },
+        complete: () => {
+          this.change.markForCheck();
+        },
+      });
+  }
+
+  onPageChange(newPageIndex: number) {
+    this.pageIndex = newPageIndex;
+    this.getList();
   }
 }

@@ -1,4 +1,4 @@
-export interface ModelListItemDto {
+export interface ModelDetailsDto {
   id: number;
   brandId: number;
   name: string;

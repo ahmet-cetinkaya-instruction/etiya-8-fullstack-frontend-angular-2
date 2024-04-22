@@ -4,6 +4,7 @@ import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.co
 import { TestPageComponent } from './routers/test-page/test-page.component';
 import { NotFoundPageComponent } from './routers/not-found-page/not-found-page.component';
 import { CreateBrandPageComponent } from './routers/create-brand-page/create-brand-page.component';
+import { ModelDetailsPageComponent } from './routers/model-details-page/model-details-page.component';
 
 export const routes: Routes = [
   // Home
@@ -19,15 +20,20 @@ export const routes: Routes = [
     component: MainLayoutComponent,
     children: [
       {
-        path: "models", // /home/models
+        path: 'models', // /home/models
         component: HomePageComponent,
-      }
-    ]
+      },
+      {
+        path: 'models/:modelId', // /home/models/1
+        // : ile başlayanlar route parametresi olur.
+        component: ModelDetailsPageComponent,
+      },
+    ],
   },
   // Test Page
   {
     path: 'layout-test',
-    component: TestPageComponent
+    component: TestPageComponent,
   },
   // Create Brand Page
   {
@@ -42,5 +48,5 @@ export const routes: Routes = [
   {
     path: 'not-found',
     component: NotFoundPageComponent,
-  }
+  },
 ];

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ModelListItemDto } from '../models/model-list-item-dto';
+import { ModelDetailsDto } from '../models/model-details-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -37,4 +38,8 @@ export class ModelsApiService {
   //   const response = {}
   //   next(response);
   // }
+
+  getById(id: number): Observable<ModelDetailsDto> {
+    return this.http.get<ModelDetailsDto>(`http://localhost:3000/models/${id}`);
+  }
 }

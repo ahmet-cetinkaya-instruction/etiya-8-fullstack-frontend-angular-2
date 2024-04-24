@@ -8,11 +8,12 @@ import {
   OnInit,
 } from '@angular/core';
 import { ModelDetailsDto } from '../../models/model-details-dto';
+import { VatAddPipe } from '../../../../core/pipes/vat-add.pipe';
 
 @Component({
   selector: 'app-model-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, VatAddPipe],
   templateUrl: './model-details.component.html',
   styleUrl: './model-details.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -40,5 +41,9 @@ export class ModelDetailsComponent implements OnInit {
         this.change.markForCheck();
       },
     });
+  }
+
+  get dateNow() {
+    return new Date();
   }
 }

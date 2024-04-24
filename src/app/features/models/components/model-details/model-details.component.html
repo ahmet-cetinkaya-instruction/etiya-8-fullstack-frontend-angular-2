@@ -1,2 +1,5 @@
-<h1>{{ modelDetails.brand.name }}</h1>
+<h1>{{ modelDetails.brand.name | uppercase }}</h1>
 <h2>{{ modelDetails.name }}</h2>
+<p>{{ modelDetails.dailyPrice | vatAdd : 10 | currency : "₺" }}</p>
+<!-- <p>{{ modelDetails.dailyPrice | number }}</p> -->
+<!-- <p>{{ dateNow | date }}</p> -->

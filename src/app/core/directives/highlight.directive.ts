@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, OnInit } from '@angular/core';
 
 @Directive({
   selector: '[appHighlight]',
@@ -20,6 +20,20 @@ export class HighlightDirective implements OnInit {
     this.element.nativeElement.appendChild(span);
 
     this.element.nativeElement.style.color = this.color;
+    this.element.nativeElement.style.backgroundColor = this.bgColor;
+
+    this.element.nativeElement.onclick = () => {
+      alert('You clicked me!');
+    }
+  }
+
+  @HostListener('mouseenter')
+  onMouseEnter() {
+    this.element.nativeElement.style.backgroundColor = 'lightblue';
+  }
+
+  @HostListener('mouseleave')
+  onMouseLeave() {
     this.element.nativeElement.style.backgroundColor = this.bgColor;
   }
 }

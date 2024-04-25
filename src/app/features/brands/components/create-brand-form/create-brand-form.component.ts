@@ -9,11 +9,12 @@ import {
 } from '@angular/forms';
 import { PostBrandRequest } from '../../models/post-brand-request';
 import { FormControlErrorPipe } from '../../../../core/pipes/form-control-error.pipe';
+import { IfNotDirective } from '../../../../core/directives/if-not.directive';
 
 @Component({
   selector: 'app-create-brand-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormControlErrorPipe],
+  imports: [CommonModule, ReactiveFormsModule, FormControlErrorPipe, IfNotDirective],
   templateUrl: './create-brand-form.component.html',
   styleUrl: './create-brand-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

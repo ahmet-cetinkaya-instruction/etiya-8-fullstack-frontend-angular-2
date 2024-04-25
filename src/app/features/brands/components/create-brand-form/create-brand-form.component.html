@@ -4,6 +4,7 @@
   <small *ngIf="form.get('name')!.invalid && form.get('name')!.touched">{{
     form.get("name")!.errors | appFormControlError
   }}</small>
+  <small *appIfNot="form.get('name')!.invalid">This field valid.</small>
 
   <button type="submit">Submit</button>
 </form>

@@ -9,11 +9,12 @@ import {
 } from '@angular/core';
 import { ModelDetailsDto } from '../../models/model-details-dto';
 import { VatAddPipe } from '../../../../core/pipes/vat-add.pipe';
+import { HighlightDirective } from '../../../../core/directives/highlight.directive';
 
 @Component({
   selector: 'app-model-details',
   standalone: true,
-  imports: [CommonModule, VatAddPipe],
+  imports: [CommonModule, VatAddPipe, HighlightDirective],
   templateUrl: './model-details.component.html',
   styleUrl: './model-details.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

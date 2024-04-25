@@ -1,6 +1,9 @@
 <form [formGroup]="form" (submit)="onFormSubmit()">
   <!-- Name Input -->
   Name: <input type="text" formControlName="name" />
+  <small *ngIf="form.get('name')!.invalid && form.get('name')!.touched">{{
+    form.get("name")!.errors | appFormControlError
+  }}</small>
 
   <button type="submit">Submit</button>
 </form>

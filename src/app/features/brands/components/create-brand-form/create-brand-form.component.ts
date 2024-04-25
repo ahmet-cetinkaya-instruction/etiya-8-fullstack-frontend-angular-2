@@ -8,11 +8,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { PostBrandRequest } from '../../models/post-brand-request';
+import { FormControlErrorPipe } from '../../../../core/pipes/form-control-error.pipe';
 
 @Component({
   selector: 'app-create-brand-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormControlErrorPipe],
   templateUrl: './create-brand-form.component.html',
   styleUrl: './create-brand-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,7 +23,7 @@ export class CreateBrandFormComponent {
     // Form Controls
     name: [
       '', // [0] : Başlangıç değeri
-      [Validators.required], // [1] : Validasyonlar
+      [Validators.required, Validators.minLength(2)], // [1] : Validasyonlar
     ],
   });
 
@@ -54,6 +55,7 @@ export class CreateBrandFormComponent {
 
     if (this.form.invalid) {
       console.error('Form is invalid');
+      this.form.markAllAsTouched();
       return;
     }
 

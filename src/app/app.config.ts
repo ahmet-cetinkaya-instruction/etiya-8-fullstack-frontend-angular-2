@@ -2,11 +2,12 @@ import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { authInterceptor } from './shared/intercepters/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(), // HttpClient'ı kullanabilmek için ekledik
+    provideHttpClient(withInterceptors([authInterceptor])), // HttpClient'ı kullanabilmek için ekledik
   ],
 };

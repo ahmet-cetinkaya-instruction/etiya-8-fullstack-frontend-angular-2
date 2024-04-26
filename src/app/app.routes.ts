@@ -5,6 +5,8 @@ import { TestPageComponent } from './routers/test-page/test-page.component';
 import { NotFoundPageComponent } from './routers/not-found-page/not-found-page.component';
 import { CreateBrandPageComponent } from './routers/create-brand-page/create-brand-page.component';
 import { ModelDetailsPageComponent } from './routers/model-details-page/model-details-page.component';
+import { securedRouteGuard } from './shared/guards/SecuredRoute.guard';
+import { logableRouteGuard } from './shared/guards/LogableRoute.guard';
 
 export const routes: Routes = [
   // Home
@@ -39,6 +41,10 @@ export const routes: Routes = [
   {
     path: 'brands/create',
     component: CreateBrandPageComponent,
+    canActivate: [securedRouteGuard, logableRouteGuard], // Guard
+    data: {
+      requiredUserRole: 'admin',
+    },
   },
   // 404 Not Found Page
   {
